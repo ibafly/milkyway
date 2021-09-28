@@ -1,10 +1,12 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
 	<meta charset="utf-8">
 	<title id="title">Milkyway - Awesome AI-Aided Language Skill Enhancement</title>
 	<link id="font-style" rel="stylesheet" href="app/milkyway-font.css" type="text/css"/>
 	<link id="overall-style" rel="stylesheet" href="app/milkyway-light.css" type="text/css"/>
+	<!-- use tailwindCSS -->
+	<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 	<script src="app/dict7k.js"></script>
 	<script src="app/badList.js"></script>
 	<script src="app/dictEE.js"></script>
@@ -12,57 +14,48 @@
 	<script src="app/rules.js"></script>
 	<script src="app/redundantList.js"></script>
 	<script src="app/init.js"> </script>
-
     </head>
-    <body class="body"> 
-	<center><h1>Milkyway -  A Cloze Practice Website</h1></center>
-	<center><input type="button" class="dark-button" id="overall-restyle" class="colorful-button" value="[　　　　Switch To DARK Theme　　　　 ]"/ onclick="changeTheme()">
+
+    <body class="body bg-gray-600"> 
+	<h1 class="pt-10 text-center text-3xl text-black text-blue-100">Milkyway</h1>
+	<h2 class="mb-10 text-center text-lg text-blue-400">Live Cloze Practice for Language Learning</h2>
 	<p> </p>
-	</center>
-	<center>Your English level:
-	    <select id="nonsense-voting" class="colorful-button">
-		<option value="dictList"  >cet-4</option>
+	
+	Current Level:
+	<select id="nonsense-voting" class="colorful-button">
+		<option value="dictList">cet-4</option>
 		<option value="dict9k" selected="selected">cet-6</option>
-		<option value="dictList_mw" >tofel</option>
-		<option value="dictList_mw" >ielts</option>
-		<option value="dictList_mw" >barrister</option>
-	    </select>
-	    Paste Text Or 
-	    <input type="button" class="dark-button" value="Clear Input" id="clear-clicker"  onkeydown="document.body.onkeydown" /> 
-	    <span style="float:right">
-	      Need 
-	      <a href="ReadMe.html" class="dark-button"> Help </a> ?
-	    </span>
-	</center>
-	<textarea id="maininput">
+		<option value="dictList_mw">tofel</option>
+		<option value="dictList_mw">ielts</option>
+		<option value="dictList_mw">barrister</option>
+		<option value="dictEst">est</option>
+	</select>
+	Paste Text or 
+	<input type="button" class="dark-button" value="Clear Input" id="clear-clicker"  onkeydown="document.body.onkeydown" /> 
+	<input type="button" class="dark-button" id="overall-restyle" class="colorful-button" value="Switch to DARK" onclick="changeTheme()">
+	<span class="ml-10 float-right align-baseline">
+		<a href="ReadMe.html" class="dark-button py-2">Help</a>
+	</span>
+	
+	<textarea id="maininput" class="my-4">
 
- ====  Paste English Text Here ====
-
-It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope,it was the winter of despair, we had everything before us, we had nothing before us, we were all going direct to Heaven, we were all going direct the other way—in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only.
-
-There were a king with a large jaw and a queen with a plain face, on the throne of England; there were a king with a large jaw and a queen with a fair face, on the throne of France. In both countries it was clearer than crystal to the lords of the State preserves of loaves and fishes, that things in general were settled for ever. 
-
-It was the year of Our Lord one thousand seven hundred and seventy-five. Spiritual revelations were conceded to England at that favoured period, as at this. Mrs. Southcott had recently attained her five-and-twentieth blessed birthday, of whom a prophetic private in the Life Guards had heralded the sublime appearance by announcing that arrangements were made for the swallowing up of London and Westminster. Even the Cock-lane ghost had been laid only a round dozen of years, after rapping out its messages, as the spirits of this very year last past (supernaturally deficient in originality) rapped out theirs. Mere messages in the earthly order of events had lately come to the English Crown and People, from a congress of British subjects in America:4 which, strange to relate, have proved more important to the human race than any communications yet received through any of the chickens of the Cock-lane brood. 
-
-Dickens_TaleOfTwoCities          ---- [The beginning of the last line implicates the title of the article]
-
+ ====  Paste Your Target Language Here ====
 
 	</textarea>
 	<div id="buttons">
-	<input type="button" class="colorful-button" value="Click To Start" id="main-clicker" onkeydown="document.body.onkeydown" /> 
+	<input type="button" class="colorful-button" value="Parse Text" id="main-clicker" onkeydown="document.body.onkeydown" /> 
+	<input type="button" class="colorful-button" value="Start Mastering" id="excise-clicker"  onkeydown="document.body.onkeydown" /> 
 	<input type="button" class="colorful-button" value="List Words" id="show-answer"  onkeydown="document.body.onkeydown" /> 
-	<input type="button" class="colorful-button" value="Cloze Excise" id="excise-clicker"  onkeydown="document.body.onkeydown" /> 
 	<input type="button" class="dark-button" value="Exclude Redundant" id="exclude-clicker"  onkeydown="document.body.onkeydown" /> 
-	<input type="button" class="dark-button" value="Re-test" id="refill-clicker"  onkeydown="document.body.onkeydown" /> 
-	<input type="button" class="dark-button" value="Start Reading" id="start-reader"  onkeydown="document.body.onkeydown" /> 
+	<input type="button" class="dark-button" value="Replay" id="refill-clicker"  onkeydown="document.body.onkeydown" /> 
+	<input type="button" class="dark-button" value="Listen Audio" id="start-reader"  onkeydown="document.body.onkeydown" /> 
+	     &nbsp&#x1f3c7 Reading Interval:
+    <input type="range" id="read-speed" max="600" min="0" value="150"/>
 	<span >
-	  <input type="button" class="dark-button" value="Import Lists" id="local-list"  onkeydown="document.body.onkeydown" /> 
 	  <input type="button" class="dark-button" value="Load" id="local-loader"  onkeydown="document.body.onkeydown" /> 
-	  <a id="changeable-head" href="." class="dark-button" > Export </a>
+	  <input type="button" class="dark-button" value="Import" id="local-list"  onkeydown="document.body.onkeydown" /> 
+	  <a id="changeable-head" href="." class="dark-button py-2" > Export </a>
 	</span>
-	     _&#x1f3c7 Reading Interval:
-	    <input type="range" id="read-speed" max="600" min="0" value="150"/>
-	
 	</div>
 
 	<div id="demo-container" class="demo-container">
@@ -79,8 +72,6 @@ Dickens_TaleOfTwoCities          ---- [The beginning of the last line implicates
 	    
 	    </div>
 	</div>
-
-
 
 	<script src="app/worker.js"> </script>
     </body>
