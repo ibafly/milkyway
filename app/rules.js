@@ -1,5 +1,5 @@
 // all transformation rules of English word appendings.
-var ruleArray=[
+var bakruleArray=[
     "-g-n-i",
     "-g-n-i+e",
     "-g-n-i-%2-%s-%1$$;",
@@ -54,3 +54,20 @@ var ruleArray=[
     "-e-v-i-t-i-%2%+e" // competitive -> competite 
 ]
 
+
+var ruleArray= new Object()
+
+ruleArray = {
+    "g": {
+        "n": {
+            "i": ["self", "+e", "-%2-%s-%1$$;", "-y+i+e;"]
+        }
+    },
+    "s": {
+        "g": {
+            "n": {
+                "i": ["self", "-%2$+e"]
+            }
+        }
+    }
+}
