@@ -221,15 +221,16 @@ function allWords(s) {
 }
 
 function useRule(s, r, st = [], last = new Object()) {
-  if (!s || s.length == 0) return null;
+  if ((!s || s.length == 0) && r[0] == '-') return null;
   else if (r.length == 0) return s;
   else {
-    var ss = s[s.length - 1]; // last letter of word or sliced word, eg: if 'likely' drops 'y' in first iterate, then now ss=l
-    var sHead = s.slice(0, s.length - 1); // letter array of word or sliced word, not including the last letter, in the example above, ss=likel
 
     var r0 = r[0]; // first character of that rule or sliced rule
     if (r0 == ";") return s;
     if (r0 == "-") {
+      // change ss sHead under condition r0==- bc s.length can be zero.
+      var ss = s[s.length - 1]; // last letter of word or sliced word, eg: if 'likely' drops 'y' in first iterate, then now ss=l
+      var sHead = s.slice(0, s.length - 1); // letter array of word or sliced word, not including the last letter, in the example above, ss=likel
       st.push(ss);
       last.worker = (f) => (f(ss) ? sHead : null);
       last.reader = (a) => (x) => x == a;
@@ -276,39 +277,53 @@ function useRule(s, r, st = [], last = new Object()) {
 }
 
 /* use word to match rules, return an array of words in their original case */
-function word2rules(word, rules, slicedTail = []) {
+function word2rules(word, rules, slicedTail = [], wordsNew = []) {
     var ss = word[word.length - 1]; 
     var sHead = word.slice(0, word.length - 1); 
 
     // var matchedRules = new Map(rules)
     var matchedRules = new Object(rules)
-    for (var lastLetter in matchedRules) {
+ //   const [firstRuleKey, ...restRulesKeys] = Object.keys(matchedRules)
+    var firstRuleKey = Object.keys(matchedRules)[0]
+    var firstRuleValue = matchedRules[firstRuleKey]
 
-        var nearObj = matchedRules[lastLetter];
+    if (firstRuleKey == "or" && firstRuleValue){
+          for (var r of firstRuleValue) {
 
-        nearIsLetter = nearObj.constructor === Array ? false: true;
+            var w = useRule(word, r, slicedTail); 
+            if (w) wordsNew.push(w);
+        }
+        delete matchedRules[firstRuleKey];
+    }
 
-        if (lastLetter != ss) return [word + slicedTail.reverse().join("")]; // no exact match in letter part, return whole input word
-        else if (lastLetter == ss && nearIsLetter == true) { // match current last letter and the next part of rule is still letter
+    for (var letterToMatch in matchedRules) {
+        var nearObj = matchedRules[letterToMatch];
 
+        nearHasLetter = nearObj.constructor === Array ? false: true;
+
+        if (letterToMatch == ss && nearHasLetter == true) { // match current last letter and the next part of rule is still letter
+
+          console.log("GOTCHA and near has letter");
             slicedTail.push(ss);
-            return word2rules(sHead, nearObj, slicedTail);
+            return word2rules(sHead, nearObj, slicedTail, wordsNew);
 
-        } else { // else nearIsLetter == false, next(last) part of rule is an array of strings 
 
-            var wordsNew = [word + slicedTail.reverse().join("")];
+        } else if (letterToMatch != ss || Object.keys(nearObj).length === 0) {
+          console.log("NOT match, continue loop directly");
+          continue;
+        } else { // else nearHasLetter == false, next(last) part of rule is an array of strings 
 
-            if (nearObj[0] == 'self') { // the last object is an array
-                wordsNew.push(word.slice(0, -1));
-            }
-            for (var r of nearObj.slice(1)) { // delete 'self' in the beginning of the array, find out (heads of) all possible original cases of one head
-                var w = useRule(sHead, r); 
+            // var wordsNew = [word + slicedTail.reverse().join("")]; Estonia declensions are too many, so the possibility the word itself is the original case is relatively small. move this to mark 'reserve'.
+//            var wordsNew = [];
+            slicedTail.push(ss);
+            for (var r of nearObj) { // delete 'self' in the beginning of the array, find out (heads of) all possible original cases of one head
+              console.log("head:" + sHead + " rules:" + r + " stack:" + slicedTail);
+                var w = useRule(sHead, r, slicedTail); 
                 if (w) wordsNew.push(w);
             }
-
-            return wordsNew;
         }  
     }
+    return wordsNew;
 }
 
 function wordsIter(words, rules, iter = 2) {
@@ -363,7 +378,7 @@ function getSimpleFilter() {
 function elemInfo(elem, allFiller1 = allFiller) {
   var eid = elem.id;
   var info = allFiller1.wordDict[eid];
-  info.audio = getAudio(info.voc);
+  // info.audio = getAudio(info.voc);
   return info;
 }
 function sendText(do_jump = true, removeDup = remove_dup) {
@@ -384,6 +399,7 @@ function sendText(do_jump = true, removeDup = remove_dup) {
   }
   var words = allWords(s); 
   var wordsValid = ruleAllWords(words, ruleArray, getSimpleFilter());
+  console.log(wordsValid);
   allFiller = fillAllLabeled(s, wordsValid);
   demo.innerHTML = "";
   demo.innerHTML = allFiller.enlonged;
@@ -826,16 +842,22 @@ function refillObjs() {
 document.getElementById("refill-clicker").onclick = refillObjs;
 
 function getDef(d, cover = false) {
-  var res = "";
+//  var res = "";
 
-  if (!cover && d.ipa) {
-    res = res + d.ipa + " -- \n";
-  }
-  if (d.def) {
-    res = res + d.def;
-  } else {
-    res = res + d;
-  }
+//  if (!cover && d.ipa) {
+//    res = res + d.ipa + " -- \n";
+//  }
+//  if (d.def) {
+//    res = res + d.def;
+//  } else {
+//    res = res + d;
+//  }
+
+  res = "<span class='font-bold'>" + d[0].translations + "</span><br>";
+
+//  for (entry of d.slice(1)) {
+//    res = res + "<br><span class='font-semibold'>" + entry.phrase + ": </span>" + entry.translations;
+//  }
   return res;
 }
 
