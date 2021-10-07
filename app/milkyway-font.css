@@ -19,6 +19,7 @@
     margin:2px;
     border-top:solid;
     bolder-right:solid;
+    position:relative
 }
 
 #explain-head{
@@ -45,13 +46,13 @@
 .colorful-button{
     margin:0px;
     border:0px;
-    padding:3px;
+    padding:5px;
     border-radius:8px;
     //float:left;
 }
 .dark-button{
     border:solid 1px;
-    padding:3px;
+    padding:5px;
     border-radius:8px;
     //float:left;
 }
@@ -62,12 +63,16 @@
     margin-left:0.05in;
     margin-right:0.05in;
     font-family:monospace;
+    position:relative;
+    white-space:nowrap;
 }
 
 .word-filler-current {
     //font-size:145%;
     font-family:monospace;
     // margin-right:6%;
+    position:relative;
+    white-space:nowrap;
 }
 
 .word-filler-done {
@@ -76,6 +81,9 @@
    // text-decoration-color: 01a756;
     font-weight:bold;
     font-family:monospace;
+    animation:blinkingText 0.4s 1;
+    position:relative;
+    white-space:nowrap;
 }
 
 .word-filler-dup{
@@ -84,7 +92,7 @@
 
 #explain-container{
     border-left:dotted 1px grey;
-    overflow-y:scroll;
+    overflow-y:auto;
     height:93vh;
     position:absolute;
     left:65%;
@@ -101,14 +109,42 @@
 #demo{
     width:100%;
     border:solid 1px gray;
+    overflow-x:hide; 
 }
 
 .red-zone{
 }
 
-.current-noter{
-    color:blue;
-    font-size: 120%;
-    font-weight:bold;
-    text-shadow: 1px 1px red, -1px -1px red, 1px -1px red, -1px 1px red;
+.current-noter-container{
+    position:absolute;
+    bottom:-4px;
+    left:-4px;
+    right: -6px;
+    height: 2.8ex;
+    text-align:justify;
+    text-decoration: underline;
+    animation:slidingTextRight 0.4s 1;
+    border: #88332EDD solid 3px;
+}
+
+@keyframes blinkingText{
+    0%{     color: #cF8;    }
+    30%{    color: #F29; }
+    60%{   color: #33F;    }
+}
+
+@keyframes slidingTextLeft{
+    from{ left:-1em; }
+    to{ left:-1ch; }
+}
+
+@keyframes slidingTextRight{
+    from{ right:100%;
+	  background-color:#44908090;
+//	  border-top:0px;
+	  border-right:0px;}
+    to{ right:-6px;
+//	border-top:0px;
+        background-color:#99664030;
+	border-right:0px}
 }
