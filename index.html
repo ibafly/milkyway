@@ -1,1 +1,77 @@
-app/milkyway.html
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta charset="utf-8">
+	<title id="title">Milkyway - Awesome AI-Aided Language Skill Enhancement</title>
+	<link id="font-style" rel="stylesheet" href="app/milkyway-font.css" type="text/css"/>
+	<link id="overall-style" rel="stylesheet" href="app/milkyway-light.css" type="text/css"/>
+	<!-- use tailwindCSS -->
+	<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+	<script src="app/dictEst.js"></script>
+	<!-- <script src="app/dict7k.js"></script>
+	<script src="app/dict9k.js"></script> -->
+	<script src="app/badList.js"></script>
+	<script src="app/rules.js"></script>
+	<script src="app/redundantList.js"></script>
+	<script src="app/init.js"> </script>
+    </head>
+
+    <body class="body bg-gray-600"> 
+	<h1 class="pt-10 text-center text-3xl text-black text-blue-100">Milkyway<span class="font-mono text-base">est</span></h1>
+	<h2 class="mb-10 text-center text-lg text-blue-400">Live Cloze Practice for Language Learning</h2>
+	
+	Vocabulary Set:
+	<select id="nonsense-voting" class="colorful-button">
+		<!-- <option value="dictList">cet-4</option>
+		<option value="dict9k" selected="selected">cet-6</option>
+		<option value="dictList_mw">tofel</option>
+		<option value="dictList_mw">ielts</option>
+		<option value="dictList_mw">barrister</option> -->
+		<option value="dictEst">est-a2-c1</option>
+	</select>
+	Paste Text or 
+	<input type="button" class="dark-button" value="Clear Input" id="clear-clicker"  onkeydown="document.body.onkeydown" /> 
+	<input type="button" class="dark-button" id="overall-restyle" class="colorful-button" value="Switch to DARK" onclick="changeTheme()">
+	<span class="ml-10 float-right align-baseline">
+		<a href="ReadMe.html" class="dark-button py-2">Help</a>
+	</span>
+	
+	<textarea id="maininput" class="my-4">
+
+ ====  Paste Your Target Language Here ====
+
+	</textarea>
+	<div id="buttons">
+	<input type="button" class="colorful-button" value="Parse Text" id="main-clicker" onkeydown="document.body.onkeydown" /> 
+	<input type="button" class="colorful-button" value="Start Mastering" id="excise-clicker"  onkeydown="document.body.onkeydown" /> 
+	<input type="button" class="colorful-button" value="List Words" id="show-answer"  onkeydown="document.body.onkeydown" /> 
+	<input type="button" class="dark-button" value="Exclude Redundant" id="exclude-clicker"  onkeydown="document.body.onkeydown" /> 
+	<input type="button" class="dark-button" value="Replay" id="refill-clicker"  onkeydown="document.body.onkeydown" /> 
+	<input type="button" class="dark-button" value="Listen Audio" id="start-reader"  onkeydown="document.body.onkeydown" /> 
+	     &nbsp&#x1f3c7 Reading Interval:
+    <input type="range" id="read-speed" max="600" min="0" value="150"/>
+	<span >
+	  <input type="button" class="dark-button" value="Load" id="local-loader"  onkeydown="document.body.onkeydown" /> 
+	  <input type="button" class="dark-button" value="Import" id="local-list"  onkeydown="document.body.onkeydown" /> 
+	  <a id="changeable-head" href="." class="dark-button py-2" > Export </a>
+	</span>
+	</div>
+
+	<div id="demo-container" class="demo-container">
+	    <div id="text-container"  class="demo-area">
+		<div id="demo" class="demo-area">
+		</div>
+	    </div>
+	    <div id="explain-container" class="demo-area">
+	    <div id="explain-head" class="demo-area">
+	    </div>
+	    <div id="explain-area" class="demo-area">
+	      
+	    </div>
+	    
+	    </div>
+	</div>
+
+	<script src="app/worker.js"> </script>
+    </body>
+</html>
