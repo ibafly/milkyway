@@ -58,8 +58,8 @@ if (cookable.length>5) {
     
 function changeTheme(themeNum  = -1){
     var themeList = [
-	{noter:"Switch To DARK Theme", href:"app/milkyway-light.css"},
-	{noter:"Switch To LIGHT Theme", href:"app/milkyway-dark.css"}
+	{noter:"🌚", href:"app/milkyway-light.css"},
+	{noter:"😎", href:"app/milkyway-dark.css"}
     ]
     var css = document.getElementById("overall-style")
     var styleButton = document.getElementById("overall-restyle")

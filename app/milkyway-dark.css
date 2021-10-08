@@ -5,7 +5,9 @@
 
 .body{
     background:rgba(40,40,30);/*rgba(220,200,180);*/
+    background: black;
     color:rgba(220,220,220);
+    color: rgb(191, 219, 254);
 }
 
 div {
@@ -16,6 +18,7 @@ div {
 #maininput {
     color:#ffa31a;
     background:black;
+    border-color: black;
 }
 
 #demo-container{
@@ -37,7 +40,7 @@ div {
 .colorful-button{
     background:#ffa31a;
     color:black;
-    //float:left;
+    /* //float:left; */
 }
 .dark-button{
     color:#ffa31a;
@@ -60,7 +63,7 @@ div {
 
 
 #demo{
-    border:solid 1px gray; 
+    /* border:solid 1px gray;  */
 }
 
 .red-zone{

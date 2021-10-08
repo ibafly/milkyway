@@ -65,6 +65,7 @@ function loadString(search){
 window.cookout((s)=>{
     loadString(s).submiter();
     window.scroll(0, demo.parentNode.offsetTop-30)
+	//window.scrollTo(0, demo.parentNode.parentNode.offsetTop-160)
 })
 	       
 var urlLoader=loadString(window.location.search)
@@ -334,7 +335,8 @@ function sendText(do_jump=true, removeDup=remove_dup){
     var s = document.getElementById("maininput").value
     s=s.replace(/([a-zA-Z]+)+-\n([a-zA-Z]+)/g, "$1$2\n")
     if (do_jump){
-	window.scroll(0, demo.parentNode.offsetTop-30)
+	//window.scroll(0, demo.parentNode.offsetTop-30)
+	window.scrollTo(0, demo.parentNode.parentNode.offsetTop-160)
 	demo.style.backgroundImage="url(\"" + baseServer + "/text-faces/?article="+encodeURIComponent(s)+"&redundantList="+encodeURIComponent(encodeURIComponent(JSON.stringify(redundantList)))+"__large.png\")"
 	refreshChangeable()
     }
@@ -611,7 +613,7 @@ function showIndexInfo(i, n){
     ar.appendChild(info)
 
     var listCaller = document.createElement("div")
-    listCaller.className = "dark-button"
+    listCaller.className = "dark-button text-base w-auto"
     listCaller.onclick = e => listWords(true)
     listCaller.innerText = "Back To Word List"
     ar.appendChild(listCaller)
@@ -696,7 +698,7 @@ function listWords(excludeLess=true){
     
     var orgElem = fillObjs[currentFill]
 
-    document.getElementById("show-answer").value= "Pause: " + (words1.length) + "/" + words.length  
+    document.getElementById("show-answer").value= "Pause & Reveal: " + (words1.length) + "/" + words.length  
     res = ""
     for (w of words){
 	var r = document.createElement("p")
