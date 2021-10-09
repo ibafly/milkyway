@@ -1,199 +1,211 @@
-
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
-   
+
 /* ===================================================================== */
 
-.body{
-    margin:0px;
+.body {
+  /* margin: 0px; */
 }
 
 #maininput {
-    width: 100%;
-    height:300px;
-    border-width: 50px 0;
-    border-style: solid;
+  /* width: 100%; */
+  height: 300px;
+  border-width: 50px 0;
+  /* border-style: solid; */
 }
 
 #maininput::placeholder {
-    font-size: 4rem;
-    line-height: 175px;
-    font-style: italic;
-    text-align: center;
-    vertical-align: middle;
+  font-size: 4rem;
+  line-height: 175px;
+  font-style: italic;
+  text-align: center;
+  vertical-align: middle;
 }
 
-#demo-container{
-    width: 100%;
-    height: 86vh;
-    /* border-top: solid;
+#demo-container {
+  /* width: 100%; */
+  height: 86vh;
+  /* border-top: solid;
     border-right: solid; */
-    position: relative;
+  /* position: relative; */
 }
 
-#explain-head{
-    font-size: 110%;
-    font-weight: bold;
-    /* font-family: monospace; */
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+#explain-head {
+  /* font-size: 110%; */
+  /* font-weight: bold; */
+  /* font-family: monospace; */
+  /* font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace; */
 }
-#explain-area{
-    /* border: solid 10px; */
-}
-
-
-#buttons > *[type="button"]{
-    margin: 0 5px 30px 0;
-    top: 2rem;
+#explain-area {
+  /* border: solid 10px; */
 }
 
-.demo-area{
-    padding: 5px;
-    line-height: 150%;
-    font-family: "Times";
-    font-size: 0.2in;
+#buttons > *[type="button"] {
+  margin: 0 5px 30px 0;
+  top: 2rem;
 }
 
-.colorful-button{
-    padding: .4em;
-    border-radius: .2em;
-    /* float:left; */
+.demo-area {
+  /* padding: 5px; */
+  /* line-height: 150%;
+  font-family: "Times";
+  font-size: 0.2in; */
 }
-.dark-button{
-    /* padding: .4em;
+
+.colorful-button {
+  padding: 0.4em;
+  border-radius: 0.2em;
+  /* float:left; */
+}
+.dark-button {
+  /* padding: .4em;
     border-radius: .2em; */
-    /* float:left; */
+  /* float:left; */
 
-/* bg-transparent px-2 py-1 border-2 rounded-full border-blue-200 align-baseline font-mono text-blue-400 */
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    background-color: transparent;
-    padding: .25rem .5rem;
-    border-width: 2px;
-    border-radius: 9999px;
-    border-color: rgb(191, 219, 254);
-    color: rgb(96, 165, 250);
-    line-height: inherit;
+  /* bg-transparent px-2 py-1 border-2 rounded-full border-blue-200 align-baseline font-mono text-blue-400 */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  background-color: transparent;
+  padding: 0.25rem 0.5rem;
+  border-width: 2px;
+  border-radius: 9999px;
+  line-height: inherit;
 }
 
 .word-filler {
-    font-weight:bold;
-/*     font-size:125%; */
-    margin-left:0.05in;
-    margin-right:0.05in;
-    /* font-family:monospace; */
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    position:relative;
-    white-space:nowrap;
+  font-weight: bold;
+  /*     font-size:125%; */
+  margin-left: 0.05in;
+  margin-right: 0.05in;
+  /* font-family:monospace; */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  position: relative;
+  white-space: nowrap;
 }
 
 .word-filler-current {
-    /* font-size:145%; */
-    /* font-family:monospace; */
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    /*  margin-right:6%; */
-    position:relative;
-    white-space:nowrap;
+  /* font-size:145%; */
+  /* font-family:monospace; */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  /*  margin-right:6%; */
+  position: relative;
+  white-space: nowrap;
 }
 
 .word-filler-done {
-/*     color: #01a756; */
-   /*  text-decoration: underline; */
-   /*  text-decoration-color: 01a756; */
-    font-weight:bold;
-    /* font-family:monospace; */
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    animation:blinkingText 0.4s 1;
-    position:relative;
-    white-space:nowrap;
+  /*     color: #01a756; */
+  /*  text-decoration: underline; */
+  /*  text-decoration-color: 01a756; */
+  font-weight: bold;
+  /* font-family:monospace; */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  animation: blinkingText 0.4s 1;
+  position: relative;
+  white-space: nowrap;
 }
 
-.word-filler-dup{
-    font-weight:bold;
+.word-filler-dup {
+  font-weight: bold;
 }
 
-#explain-container{
-    /* border-left:dotted 1px grey; */
-    overflow-y:auto;
-    height:83vh;
-    position:absolute;
-    left:65%;
-    /* right:1%; */
+#explain-container {
+  /* border-left:dotted 1px grey; */
+  /* overflow-y: auto; */
+  height: 83vh;
+  /* position: absolute; */
+  /* left: 65%; */
+  /* right:1%; */
 }
 
-#text-container{
-    position:absolute;
-    width:65%;
-    height:83vh;
-    overflow-y:scroll; 
-    overflow-x:hide; 
+#text-container {
+  /* position: absolute;
+  width: 65%; */
+  height: 83vh;
+  /* overflow-y: scroll;
+  overflow-x: hidden; */
 }
 
-#demo{
-    width:100%;
-    /* border:solid 1px gray; */
-    /* overflow-x:hide;  */
+#demo {
+  /* width: 100%; */
+  /* border:solid 1px gray; */
+  /* overflow-x:hide;  */
 }
 
-.red-zone{
+.red-zone {
 }
 
-.current-noter-container{
-    position:absolute;
-    bottom:-4px;
-    left:-4px;
+.current-noter-container {
+  position: absolute;
+  bottom: -4px;
+  left: -4px;
+  right: -6px;
+  height: 2.8ex;
+  text-align: justify;
+  text-decoration: underline;
+  animation: slidingTextRight 0.4s 1;
+  border: #88332edd solid 3px;
+}
+
+@keyframes blinkingText {
+  0% {
+    color: #cf8;
+  }
+  30% {
+    color: #f29;
+  }
+  60% {
+    color: #33f;
+  }
+}
+
+@keyframes slidingTextLeft {
+  from {
+    left: -1em;
+  }
+  to {
+    left: -1ch;
+  }
+}
+
+@keyframes slidingTextRight {
+  from {
+    right: 100%;
+    background-color: #44908090;
+    /* 	  border-top:0px; */
+    border-right: 0px;
+  }
+  to {
     right: -6px;
-    height: 2.8ex;
-    text-align:justify;
-    text-decoration: underline;
-    animation:slidingTextRight 0.4s 1;
-    border: #88332EDD solid 3px;
-}
-
-@keyframes blinkingText{
-    0%{     color: #cF8;    }
-    30%{    color: #F29; }
-    60%{   color: #33F;    }
-}
-
-@keyframes slidingTextLeft{
-    from{ left:-1em; }
-    to{ left:-1ch; }
-}
-
-@keyframes slidingTextRight{
-    from{ right:100%;
-	  background-color:#44908090;
-/* 	  border-top:0px; */
-	  border-right:0px;}
-    to{ right:-6px;
-/* 	border-top:0px; */
-        background-color:#99664030;
-	border-right:0px}
+    /* 	border-top:0px; */
+    background-color: #99664030;
+    border-right: 0px;
+  }
 }
 
 .item-mainconsole {
-    /* margin: auto; */
+  /* margin: auto; */
 }
 
-.item-progress{
-    /* margin: auto; */
-    
-
+.item-progress {
+  /* margin: auto; */
 }
 
 .item-wordrelated {
-    /* margin: auto; */
-
+  /* margin: auto; */
 }
 
 select {
-    appearance: none;
-    background-color: transparent;
-    width: 53%;
-    cursor: inherit;
-    line-height: inherit;
-    outline: none;
+  appearance: none;
+  background-color: transparent;
+  width: 53%;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
 }
