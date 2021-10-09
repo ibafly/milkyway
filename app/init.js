@@ -31,7 +31,8 @@ function getAudioEnclosure() {
   return res;
 }
 
-var getAudio = getAudioEnclosure();
+var getAudio = getAudioEnclosure()
+
 function getOrElse(o, l){
     if (l.length == 0)
 	return o
@@ -43,36 +44,33 @@ function getOrElse(o, l){
 
 var pluginStorage = getOrElse(window, ["chrome", "storage", "local"])
 if (pluginStorage){
-  window.cookout = (f) =>
-    chrome.storage.local.get(["exciseuri"], (s) => {
-      f(s.exciseuri);
-    });
-  window.cookin = (s) => {
-    chrome.storage.local.set({ "exciseuri": s }, () =>
-      console.log(" <-localdata set")
-    );
-  };
-} else if (cookable.length <= 5 && cookedRecords[0].length > 0) {
-  cookable = cookedRecords[0];
+    window.cookout=(f)=>chrome.storage.local.get(['exciseuri'], (s)=>{f(s.exciseuri)})
+    window.cookin=(s)=>{
+	chrome.storage.local.set({"exciseuri":s}, ()=>console.log(" <-localdata set")) 
+    }
 }
 if (cookable.length > 5) {
   window.cookout = (f) => f(cookable);
 }
+if (cookable.length>5) {
+    window.cookout=f=>f(cookable)
+}
 
-    
-function changeTheme(themeNum = -1) {
+function changeTheme(themeNum  = -1){
     var themeList = [
 	{noter:"🌚", href:"app/milkyway-light.css"},
 	{noter:"😎", href:"app/milkyway-dark.css"}
     ]
+    var css = document.getElementById("overall-style")
+    var styleButton = document.getElementById("overall-restyle")
     var currentThemeIndex = styleButton.attributes["currentThemeIndex"]
     currentThemeIndex = currentThemeIndex ? (currentThemeIndex.value) : 1
     if (themeNum >= 0){
-	currentThemeIndex = themeNum 
+	currentThemeIndex = themeNum
     }
     var c0 = currentThemeIndex % themeList.length
     var c1 = (c0 + 1) % themeList.length
-    
+
     styleButton.value = themeList[c0].noter
     css.href = themeList[c0].href
     styleButton.setAttribute("currentThemeIndex", c1)
