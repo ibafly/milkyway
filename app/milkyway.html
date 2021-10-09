@@ -1,78 +1,93 @@
 <!DOCTYPE html>
 <html>
-    <head>
-	<meta charset="utf-8">
-	<title id="title">Milkyway - Awesome AI-Aided Language Skill Enhancement</title>
-	<link id="font-style" rel="stylesheet" href="app/milkyway-font.css" type="text/css"/>
-	<link id="overall-style" rel="stylesheet" href="app/milkyway-light.css" type="text/css"/>
-	<!-- use tailwindCSS -->
-	<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+	<head>
+		<meta charset="utf-8">
+		<title id="title">Milkyway - Awesome AI-Aided Language Skill Enhancement</title>
+		<link id="font-style" rel="stylesheet" href="app/milkyway-font.css" type="text/css" />
+		<link id="overall-style" rel="stylesheet" href="app/milkyway-light.css" type="text/css" />
+		<!-- use tailwindCSS -->
+		<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 	<script src="app/dictEst.js"></script>
 	<!-- <script src="app/dict7k.js"></script>
 	<script src="app/dict9k.js"></script> -->
-	<script src="app/badList.js"></script>
-	<script src="app/rules.js"></script>
-	<script src="app/redundantList.js"></script>
-	<script src="app/init.js"> </script>
-    </head>
+		<script src="app/badList.js"></script>
+		<script src="app/rules.js"></script>
+		<script src="app/redundantList.js"></script>
+		<script src="app/init.js"> </script>
+	</head>
 
-    <body class="body bg-gray-600"> 
-	<h1 class="pt-10 text-center text-3xl text-black text-blue-100">Milkyway</h1>
-	<h2 class="mb-10 text-center text-lg text-blue-400">Live Cloze Practice for Language Learning</h2>
-	<p> </p>
-	
-	Current Level:
-	<select id="nonsense-voting" class="colorful-button">
-		<!-- <option value="dictList">cet-4</option>
-		<option value="dict9k" selected="selected">cet-6</option>
-		<option value="dictList_mw">tofel</option>
-		<option value="dictList_mw">ielts</option>
-		<option value="dictList_mw">barrister</option> -->
-		<option value="dictEst">est</option>
-	</select>
-	Paste Text or 
-	<input type="button" class="dark-button" value="Clear Input" id="clear-clicker"  onkeydown="document.body.onkeydown" /> 
-	<input type="button" class="dark-button" id="overall-restyle" class="colorful-button" value="Switch to DARK" onclick="changeTheme()">
-	<span class="ml-10 float-right align-baseline">
-		<a href="ReadMe.html" class="dark-button py-2">Help</a>
-	</span>
-	
-	<textarea id="maininput" class="my-4">
+	<body class="body relative">
 
- ====  Paste Your Target Language Here ====
+		<header class="absolute w-screen pt-3 px-5">
+			<h1 class="inline-block font-mono font-bold text-3xl text-black text-blue-500">Milkyway</h1>
+			<h2 class="inline-block ml-4 font-mono text-base text-blue-300">Live Cloze Practice for Language Learning
+			</h2>
+			<a href="ReadMe.html" class="inline-block relative float-right py-1.5 leading-8 align-baseline text-yellow-400">
+				Help
+			</a>
+			<input type="button" id="overall-restyle" class="relative float-right leading-8 align-baseline mr-0.5 p-1.5 bg-transparent" value="&#x1f31a;" onclick="changeTheme()" />
+		</header>
 
-	</textarea>
-	<div id="buttons">
-	<input type="button" class="colorful-button" value="Parse Text" id="main-clicker" onkeydown="document.body.onkeydown" /> 
-	<input type="button" class="colorful-button" value="Start Mastering" id="excise-clicker"  onkeydown="document.body.onkeydown" /> 
-	<input type="button" class="colorful-button" value="List Words" id="show-answer"  onkeydown="document.body.onkeydown" /> 
-	<input type="button" class="dark-button" value="Exclude Redundant" id="exclude-clicker"  onkeydown="document.body.onkeydown" /> 
-	<input type="button" class="dark-button" value="Replay" id="refill-clicker"  onkeydown="document.body.onkeydown" /> 
-	<input type="button" class="dark-button" value="Listen Audio" id="start-reader"  onkeydown="document.body.onkeydown" /> 
-	     &nbsp&#x1f3c7 Reading Interval:
-    <input type="range" id="read-speed" max="600" min="0" value="150"/>
-	<span >
-	  <input type="button" class="dark-button" value="Load" id="local-loader"  onkeydown="document.body.onkeydown" /> 
-	  <input type="button" class="dark-button" value="Import" id="local-list"  onkeydown="document.body.onkeydown" /> 
-	  <a id="changeable-head" href="." class="dark-button py-2" > Export </a>
-	</span>
-	</div>
+		<textarea id="maininput" class="inline-block mb-4 px-10 placeholder-blue-300 .focus:placeholder-blue-400 text-blue-900" placeholder="&#x1f5d2; Paste Text Here"></textarea>
 
-	<div id="demo-container" class="demo-container">
-	    <div id="text-container"  class="demo-area">
-		<div id="demo" class="demo-area">
+		<input type="button" class="absolute block top-60 right-10 bg-transparent px-3 py-1 border-2 rounded-full border-blue-200 align-baseline font-mono text-blue-400" value="Clear Input" id="clear-clicker" onkeydown="document.body.onkeydown" />
+
+
+		<div id="buttons" class="w-screen h-24 px-5 mt-5 mb-10 flex flex-row flex-nowrap justify-between items-stretch text-sm">
+			<div class="item-mainconsole flex flex-col justify-around items-center pt-3 border-2 rounded-full border-yellow-200 font-mono text-base text-yellow-500">
+			<input type="button" class="colorful-button bg-white w-auto px-2 py-1 align-bottom" value="Set All In Red" id="main-clicker" onkeydown="document.body.onkeydown" />
+			<input type="button" class="colorful-button bg-transparent w-auto px-2 py-1" value="Cloze The Red" id="excise-clicker" onkeydown="document.body.onkeydown" />
+			<input type="button" class="colorful-button bg-transparent w-auto px-2 py-1" value="Replay The Red" id="refill-clicker" onkeydown="document.body.onkeydown" />
+
+			<div class="mt-1">
+			<input type="button" class="colorful-button bg-yellow-200 border-2 border-yellow-200 text-yellow-500" value="List Words" id="show-answer" onkeydown="document.body.onkeydown" />
+			</div>
+			</div>
+
+
+			<div class="item-progress order-first w-1/3 flex flex-col justify-around">
+				<input type="button" class="inline-block mx-auto dark-button px-2 py-1" value="Import Progress" id="local-loader" onkeydown="document.body.onkeydown" />
+				<input type="button" class="dark-button mx-auto hidden" value="Import" id="local-list" onkeydown="document.body.onkeydown" />
+				<input type="button" class="hidden colorful-button mx-auto bg-white border-2 border-yellow-200" value="Ignore Learnt" id="exclude-clicker" onkeydown="document.body.onkeydown" />
+				<a id="changeable-head" href="." class="block dark-button mx-auto top-4" type="button">Export Progress</a>
+			</div>
+
+			<div class="item-wordrelated w-1/3 flex flex-col justify-between items-center font-bold text-blue-500">
+				<span>
+					Audio &#x1f508;
+					<input type="button" class="inline-block dark-button" value="Listen Words" id="start-reader" onkeydown="document.body.onkeydown" />
+				</span>
+				<span class="block">
+					Speed &#x26a1;
+					<input type="range" id="read-speed" class="align-middle w-24" max="600" min="0" value="150" />
+				</span>
+				<div>
+					<label for="nonsense-voting">Wordset &#x1f4da;</label>
+					<select id="nonsense-voting" class="px-2 py-1 border-2 rounded-full border-dotted border-blue-400 bg-blue-100 font-mono text-blue-500">
+						<option value="dictList">CET-4</option>
+						<option value="dict9k" selected="selected">CET-6</option>
+						<option value="dictList_mw">TOFEL</option>
+						<option value="dictList_mw">IELTS</option>
+						<option value="dictList_mw">Barrister</option>
+						<option value="dictEst">est</option>
+					</select>
+				</div>
+			</div>
 		</div>
-	    </div>
-	    <div id="explain-container" class="demo-area">
-	    <div id="explain-head" class="demo-area">
-	    </div>
-	    <div id="explain-area" class="demo-area">
-	      
-	    </div>
-	    
-	    </div>
-	</div>
 
-	<script src="app/worker.js"> </script>
-    </body>
+
+		<div id="demo-container" class="demo-container mt-10">
+			<div id="text-container" class="demo-area pl-10 pr-3">
+				<div id="demo" class="demo-area "></div>
+			</div>
+			<div id="explain-container" class="demo-area pr-10">
+				<div id="explain-head" class="demo-area"></div>
+				<div id="explain-area" class="demo-area p-2 bg-blue-100"></div>
+			</div>
+		</div>
+
+		<script src="app/worker.js"> </script>
+	</body>
+
 </html>
