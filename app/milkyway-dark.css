@@ -1,73 +1,69 @@
+* {
+  box-sizing: border-box;
+}
 
-* {box-sizing: border-box;}
-   
 /* ===================================================================== */
 
-.body{
-    background:rgba(40,40,30);/*rgba(220,200,180);*/
-    background: black;
-    color:rgba(220,220,220);
-    color: rgb(191, 219, 254);
+.body {
+  background: rgba(40, 40, 30); /*rgba(220,200,180);*/
+  background: black;
+  color: rgba(220, 220, 220);
+  color: rgb(191, 219, 254);
 }
 
 div {
-    scrollbar-color: #993300 #110011;
-    scrollbar-width: 8px;
+  scrollbar-color: #993300 #110011;
+  scrollbar-width: 8px;
 }
 
 #maininput {
-    color:#ffa31a;
-    background:black;
-    border-color: black;
+  color: #ffa31a;
+  background: black;
+  border-color: black;
 }
 
-#demo-container{
-    background:black;
+#demo-container {
+  background: black;
 }
 
-#explain-head{
-    color:lightblue;
+#explain-head {
+  color: lightblue;
 }
-#explain-area{
-    background:black;
-}
-
-
-
-.demo-area{
+#explain-area {
+  background: black;
 }
 
-.colorful-button{
-    background:#ffa31a;
-    color:black;
-    /* //float:left; */
+.demo-area {
 }
-.dark-button{
-    color:#ffa31a;
-    background:black;
-    border-color:#ffa31a;;
+
+.colorful-button {
+  background: #ffa31a;
+  color: black;
+  /* //float:left; */
+}
+.dark-button {
+  color: #ffa31a;
+  background: black;
+  border-color: #ffa31a;
 }
 
 .word-filler {
-    color:#ffa31a;
+  color: #ffa31a;
 }
 
 .word-filler-current {
-    color:pink;
-    border:1px solid rgba(255,170,0);
+  color: pink;
+  border: 1px solid rgba(255, 170, 0);
 }
 
 .word-filler-done {
-    color: #30b787;
+  color: #30b787;
 }
 
-
-#demo{
-    /* border:solid 1px gray;  */
+#demo {
+  /* border:solid 1px gray;  */
 }
 
-.red-zone{
-    color:#fc2200;
+.red-zone {
+  color: #fc2200;
 }
-
-

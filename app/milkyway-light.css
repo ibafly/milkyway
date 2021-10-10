@@ -1,71 +1,78 @@
+* {
+  box-sizing: border-box;
+}
 
-* {box-sizing: border-box;}
-   
 /* ===================================================================== */
 
-.body{
-    background: rgb(255 255 255);/*rgba(220,200,180);*/
-    color:rgb(11 11 11);
-    /* margin:0px; */
+.body {
+  background: rgb(255 255 255); /*rgba(220,200,180);*/
+  color: rgb(96, 165, 250);
+  /* margin:0px; */
 }
 
 div {
-    scrollbar-color:rgb(191, 219, 254) transparent;
-    scrollbar-width: 5px;
+  scrollbar-color: rgb(191, 219, 254) transparent;
+  scrollbar-width: 5px;
 }
-
 
 #maininput {
-   /* margin-left:10px;
+  /* margin-left:10px;
    width:98%;
    height:300px; */
-    color:#31353e;
-    background:#fefefe;
-    border-color: white;
+
+  background: #fefefe;
+  border-color: white;
 }
 
-#explain-head{
-    color:#2242a1;
+#explain-head {
+  color: #2242a1;
 }
-#explain-area{
-    /* background:#ffffffd3; */
-    /* border-color: #ecbd6f; */
+#explain-area {
+  /* background:#ffffffd3; */
+  /* border-color: #ecbd6f; */
+
+  /* text-blue-500 */
+  /* bg-blue-100 */
 }
 
-.colorful-button{
-    /* background:#efca73;
+.colorful-button {
+  /* background:#efca73;
     border: 1px solid #ff838a;
     color:black; */
 }
-.dark-button{
-    /* color:#efc37a;
+.dark-button {
+  /* color:#efc37a;
     background:#0d1d29;
     border-color:#cfc3ca; */
+  border-color: rgb(191, 219, 254);
+  color: rgb(96, 165, 250);
 }
 
 .word-filler {
-    color:#af411c;
+  /* color: #af411c; */
+  color: rgb(239, 68, 68);
+  color: rgb(127, 29, 29);
+  color: rgb(153, 27, 27);
 }
 
 .word-filler-current {
-    color:#c053a4;
-    border:1px solid rgba(255,170,0);
+  color: #c053a4;
+  border: 1px solid rgba(255, 170, 0);
 }
 
 .word-filler-done {
-    /* color: #01a756; */
-    color: #2242a1;
+  /* color: #01a756; */
+  color: #2242a1;
 }
 
-#explain-container{
-    /* border-left:dotted 1px grey; */
+#explain-container {
+  /* border-left:dotted 1px grey; */
 }
 
-#demo{
-    /* border:solid 1px gray; */
+#demo {
+  /* border:solid 1px gray; */
 }
 
-.red-zone{
-    color:#fc2200;
+.red-zone {
+  color: #fc2200;
 }
-

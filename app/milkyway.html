@@ -1,92 +1,335 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title id="title">Milkyway - Awesome AI-Aided Language Skill Enhancement</title>
-		<link id="font-style" rel="stylesheet" href="app/milkyway-font.css" type="text/css" />
-		<link id="overall-style" rel="stylesheet" href="app/milkyway-light.css" type="text/css" />
-		<!-- use tailwindCSS -->
-		<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-		<script src="app/dictEst.js"></script>
-		<script src="app/dict7k.js"></script>
-		<script src="app/badList.js"></script>
-		<script src="app/dictEE.js"></script>
-		<script src="app/dict9k.js"></script>
-		<script src="app/rules.js"></script>
-		<script src="app/redundantList.js"></script>
-		<script src="app/init.js"> </script>
-	</head>
-	<body class="body relative">
+  <head>
+    <meta charset="utf-8" />
+    <title id="title">
+      Milkyway - Awesome AI-Aided Language Skill Enhancement
+    </title>
+    <link
+      id="font-style"
+      rel="stylesheet"
+      href="app/milkyway-font.css"
+      type="text/css"
+    />
+    <link
+      id="overall-style"
+      rel="stylesheet"
+      href="app/milkyway-light.css"
+      type="text/css"
+    />
+    <!-- use tailwindCSS -->
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="app/dictEst></script>
+    <script src="app/dict7k.js"></script>
+    <script src="app/badList.js"></script>
+    <script src="app/dictEE.js"></script>
+    <script src="app/dict9k.js"></script>
+    <script src="app/rules.js"></script>
+    <script src="app/redundantList.js"></script>
+    <script src="app/init.js"></script>
+  </head>
 
-		<header class="absolute w-screen pt-3 px-5">
-			<h1 class="inline-block font-mono font-bold text-3xl text-black text-blue-500">Milkyway</h1>
-			<h2 class="inline-block ml-4 font-mono text-base text-blue-300">Live Cloze Practice for Language Learning
-			</h2>
-			<a href="ReadMe.html" class="inline-block relative float-right py-1.5 leading-8 align-baseline text-yellow-400">
-				Help
-			</a>
-			<input type="button" id="overall-restyle" class="relative float-right leading-8 align-baseline mr-0.5 p-1.5 bg-transparent" value="&#x1f31a;" onclick="changeTheme()" />
-		</header>
+  <body class="body relative m-0 text-gray-600">
+    <header class="absolute w-full pt-3 px-5">
+      <h1
+        class="
+          inline-block
+          font-mono font-bold
+          text-3xl text-black text-blue-500
+        "
+      >
+        Milkyway
+      </h1>
+      <h2 class="inline-block ml-4 font-mono text-base text-blue-300">
+        Live Cloze Practice for Language Learning
+      </h2>
+      <a
+        href="ReadMe.html"
+        class="
+          inline-block
+          relative
+          float-right
+          py-1.5
+          leading-8
+          align-baseline
+          text-yellow-400
+        "
+      >
+        Help
+      </a>
+      <input
+        type="button"
+        id="overall-restyle"
+        class="
+          relative
+          float-right
+          leading-8
+          align-baseline
+          mr-0.5
+          p-1.5
+          bg-transparent
+        "
+        value="&#x1f31a;"
+        onclick="changeTheme()"
+      />
+    </header>
 
-		<textarea id="maininput" class="inline-block mb-4 px-10 placeholder-blue-300 .focus:placeholder-blue-400 text-blue-900" placeholder="&#x1f5d2; Paste Text Here"></textarea>
+    <textarea
+      id="maininput"
+      class="
+        inline-block
+        mb-4
+        w-full
+        px-10
+        border-solid
+        placeholder-blue-300
+        .focus:placeholder-blue-400
+        text-gray-400
+      "
+      placeholder="&#x1f5d2; Paste Text Here"
+    ></textarea>
 
-		<input type="button" class="absolute block top-60 right-10 bg-transparent px-3 py-1 border-2 rounded-full border-blue-200 align-baseline font-mono text-blue-400" value="Clear Input" id="clear-clicker" onkeydown="document.body.onkeydown" />
+    <input
+      type="button"
+      class="
+        absolute
+        block
+        top-60
+        right-10
+        bg-transparent
+        px-3
+        py-1
+        border-2
+        rounded-full
+        border-blue-200
+        align-baseline
+        font-mono
+        text-blue-400
+      "
+      value="Clear Input"
+      id="clear-clicker"
+      onkeydown="document.body.onkeydown"
+    />
 
+    <div
+      id="buttons"
+      class="
+        w-full
+        h-24
+        px-5
+        mt-5
+        mb-10
+        flex flex-row flex-nowrap
+        justify-between
+        items-stretch
+        text-sm
+      "
+    >
+      <div
+        class="
+          item-mainconsole
+          flex flex-col
+          justify-around
+          items-center
+          pt-3
+          border-2
+          rounded-full
+          border-yellow-200
+          font-mono
+          text-base text-yellow-500
+        "
+      >
+        <input
+          type="button"
+          class="colorful-button bg-white w-auto px-2 py-1 align-bottom"
+          value="Use New Text"
+          id="main-clicker"
+          onkeydown="document.body.onkeydown"
+        />
+        <input
+          type="button"
+          class="colorful-button bg-transparent w-auto px-2 py-1"
+          value="Start | Resume"
+          id="excise-clicker"
+          onkeydown="document.body.onkeydown"
+        />
+        <input
+          type="button"
+          class="colorful-button bg-transparent w-auto px-2 py-1"
+          value="Replay"
+          id="refill-clicker"
+          onkeydown="document.body.onkeydown"
+        />
 
-		<div id="buttons" class="w-screen h-24 px-5 mt-5 mb-10 flex flex-row flex-nowrap justify-between items-stretch text-sm">
-			<div class="item-mainconsole flex flex-col justify-around items-center pt-3 border-2 rounded-full border-yellow-200 font-mono text-base text-yellow-500">
-			<input type="button" class="colorful-button bg-white w-auto px-2 py-1 align-bottom" value="Set All In Red" id="main-clicker" onkeydown="document.body.onkeydown" />
-			<input type="button" class="colorful-button bg-transparent w-auto px-2 py-1" value="Cloze The Red" id="excise-clicker" onkeydown="document.body.onkeydown" />
-			<input type="button" class="colorful-button bg-transparent w-auto px-2 py-1" value="Replay The Red" id="refill-clicker" onkeydown="document.body.onkeydown" />
+        <div class="mt-1">
+          <input
+            type="button"
+            class="colorful-button bg-yellow-200 text-yellow-500"
+            value="List Words"
+            id="show-answer"
+            onkeydown="document.body.onkeydown"
+          />
+        </div>
+      </div>
 
-			<div class="mt-1">
-			<input type="button" class="colorful-button bg-yellow-200 border-2 border-yellow-200 text-yellow-500" value="List Words" id="show-answer" onkeydown="document.body.onkeydown" />
-			</div>
-			</div>
+      <div
+        class="
+          item-progress
+          order-first
+          w-1/3
+          flex flex-col
+          justify-between
+          space-y-3
+          >
+          *
+        "
+      >
+        <input
+          type="button"
+          class="dark-button mx-auto"
+          value="Import Words"
+          id="local-list"
+          onkeydown="document.body.onkeydown"
+        />
+        <input
+          type="button"
+          class="inline-block mx-auto dark-button px-2 py-1"
+          value="Import Progress"
+          id="local-loader"
+          onkeydown="document.body.onkeydown"
+        />
+        <input
+          type="button"
+          class="
+            hidden
+            colorful-button
+            mx-auto
+            bg-white
+            border-2 border-yellow-200
+          "
+          value="Ignore Learnt"
+          id="exclude-clicker"
+          onkeydown="document.body.onkeydown"
+        />
+        <a
+          id="changeable-head"
+          href="."
+          class="block dark-button mx-auto top-4 whitespace-nowrap"
+          type="button"
+          >Export Progress</a
+        >
+      </div>
 
+      <div
+        class="
+          item-wordrelated
+          w-1/3
+          flex flex-col flex-nowrap
+          justify-between
+          items-center
+          space-y-3
+          >
+          *
+          font-bold
+          text-blue-500
+        "
+      >
+        <span class="inline-block whitespace-nowrap">
+          <span class="hidden md:inline">Audio </span>&#x1f508;&nbsp;
+          <input
+            type="button"
+            class="inline-block dark-button"
+            value="Listen Words"
+            id="start-reader"
+            onkeydown="document.body.onkeydown"
+          />
+        </span>
+        <span class="inline-block whitespace-nowrap">
+          <span class="hidden md:inline">Speed </span>&#x26a1;&nbsp;
+          <input
+            type="range"
+            id="read-speed"
+            class="dark-button align-middle w-24"
+            max="600"
+            min="0"
+            value="150"
+          />
+        </span>
+        <div class="whitespace-nowrap">
+          <label for="nonsense-voting" class="inline-block"
+            ><span class="hidden md:inline">Wordset </span
+            >&#x1f4da;&nbsp;</label
+          >
+          <select
+            id="nonsense-voting"
+            class="
+              inline-block
+              px-2
+              py-1
+              border-2
+              rounded-full
+              border-dotted border-blue-400
+              bg-blue-100
+              font-mono
+              text-sm text-blue-500 text-center
+            "
+          >
+            <option value="dictEst">Est-A2-C1</option>
+            <option value="dictList">CET-4</option>
+            <option value="dict9k" selected="selected">CET-6</option>
+            <option value="dictList_mw">TOFEL</option>
+            <option value="dictList_mw">IELTS</option>
+            <option value="dictList_mw">Barrister</option>
+          </select>
+        </div>
+      </div>
+    </div>
 
-			<div class="item-progress order-first w-1/3 flex flex-col justify-around">
-				<input type="button" class="inline-block mx-auto dark-button px-2 py-1" value="Import Progress" id="local-loader" onkeydown="document.body.onkeydown" />
-				<input type="button" class="dark-button mx-auto hidden" value="Import" id="local-list" onkeydown="document.body.onkeydown" />
-				<input type="button" class="hidden colorful-button mx-auto bg-white border-2 border-yellow-200" value="Ignore Learnt" id="exclude-clicker" onkeydown="document.body.onkeydown" />
-				<a id="changeable-head" href="." class="block dark-button mx-auto top-4" type="button">Export Progress</a>
-			</div>
+    <div
+      id="demo-container"
+      class="demo-container relative top-0 mt-10 w-full pt-3 font-sans text-xl"
+    >
+      <div
+        id="text-container"
+        class="
+          demo-area
+          absolute
+          w-3/5
+          max-w-screen-lg
+          right-1/3
+          pl-10
+          pr-3
+          pt-8
+          overflow-y-auto overflow-x-hidden
+        "
+      >
+        <!-- &#13;&#10; or &#xa; both ok for new line in data attributes -->
+        <!-- data-placeholder="&#x1f6a6;USE GUIDE:&#13;&#10;1. Paste text in your target language up above.&#13;&#10;2. Select desired wordset.&#xa;3. Click `Use New Text`, matched words in wordset &#xa;will be showed on the right side.&#13;&#10;4. Click `Start | Resume` to start cloze test with matched words. &#xa;Use `Pause & Reveal` to peek the answers of words still covered.&#13;&#10;5. `Replay` to start it over." -->
+        <div id="demo" class="demo-area w-auto"></div>
+      </div>
+      <div
+        id="explain-container"
+        class="
+          demo-area
+          absolute
+          left-2/3
+          pr-10
+          pt-8
+          overflow-y-auto
+          text-blue-500
+        "
+      >
+        <div
+          id="explain-head"
+          class="demo-area font-mono font-bold text-2xl"
+        ></div>
+        <div id="explain-area" class="demo-area p-2 bg-blue-100"></div>
+      </div>
+    </div>
 
-			<div class="item-wordrelated w-1/3 flex flex-col justify-between items-center font-bold text-blue-500">
-				<span>
-					Audio &#x1f508;
-					<input type="button" class="inline-block dark-button" value="Listen Words" id="start-reader" onkeydown="document.body.onkeydown" />
-				</span>
-				<span class="block">
-					Speed &#x26a1;
-					<input type="range" id="read-speed" class="align-middle w-24" max="600" min="0" value="150" />
-				</span>
-				<div>
-					<label for="nonsense-voting">Wordset &#x1f4da;</label>
-					<select id="nonsense-voting" class="px-2 py-1 border-2 rounded-full border-dotted border-blue-400 bg-blue-100 font-mono text-blue-500">
-						<option value="dictEst">est</option>
-						<option value="dictList">CET-4</option>
-						<option value="dict9k" selected="selected">CET-6</option>
-						<option value="dictList_mw">TOFEL</option>
-						<option value="dictList_mw">IELTS</option>
-						<option value="dictList_mw">Barrister</option>
-					</select>
-				</div>
-			</div>
-		</div>
-
-
-		<div id="demo-container" class="demo-container mt-10">
-			<div id="text-container" class="demo-area pl-10 pr-3">
-				<div id="demo" class="demo-area "></div>
-			</div>
-			<div id="explain-container" class="demo-area pr-10">
-				<div id="explain-head" class="demo-area"></div>
-				<div id="explain-area" class="demo-area p-2 bg-blue-100"></div>
-			</div>
-		</div>
-
-		<script src="app/worker.js"> </script>
-	</body>
-
+    <script src="app/worker.js"></script>
+  </body>
 </html>
