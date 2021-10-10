@@ -31,8 +31,8 @@
     <script src="app/init.js"></script>
   </head>
 
-  <body class="body relative m-0">
-    <header class="absolute w-screen pt-3 px-5">
+  <body class="body relative m-0 text-gray-600">
+    <header class="absolute w-full pt-3 px-5">
       <h1
         class="
           inline-block
@@ -86,7 +86,7 @@
         border-solid
         placeholder-blue-300
         .focus:placeholder-blue-400
-        text-blue-900
+        text-gray-400
       "
       placeholder="&#x1f5d2; Paste Text Here"
     ></textarea>
@@ -116,7 +116,7 @@
     <div
       id="buttons"
       class="
-        w-screen
+        w-full
         h-24
         px-5
         mt-5
@@ -144,21 +144,21 @@
         <input
           type="button"
           class="colorful-button bg-white w-auto px-2 py-1 align-bottom"
-          value="Set All In Red"
+          value="Use New Text"
           id="main-clicker"
           onkeydown="document.body.onkeydown"
         />
         <input
           type="button"
           class="colorful-button bg-transparent w-auto px-2 py-1"
-          value="Cloze The Red"
+          value="Start | Resume"
           id="excise-clicker"
           onkeydown="document.body.onkeydown"
         />
         <input
           type="button"
           class="colorful-button bg-transparent w-auto px-2 py-1"
-          value="Replay The Red"
+          value="Replay"
           id="refill-clicker"
           onkeydown="document.body.onkeydown"
         />
@@ -166,12 +166,7 @@
         <div class="mt-1">
           <input
             type="button"
-            class="
-              colorful-button
-              bg-yellow-200
-              border-2 border-yellow-200
-              text-yellow-500
-            "
+            class="colorful-button bg-yellow-200 text-yellow-500"
             value="List Words"
             id="show-answer"
             onkeydown="document.body.onkeydown"
@@ -184,23 +179,25 @@
           item-progress
           order-first
           w-1/3
-          md:1/4
           flex flex-col
-          justify-around
+          justify-between
+          space-y-3
+          >
+          *
         "
       >
+        <input
+          type="button"
+          class="dark-button mx-auto"
+          value="Import Words"
+          id="local-list"
+          onkeydown="document.body.onkeydown"
+        />
         <input
           type="button"
           class="inline-block mx-auto dark-button px-2 py-1"
           value="Import Progress"
           id="local-loader"
-          onkeydown="document.body.onkeydown"
-        />
-        <input
-          type="button"
-          class="dark-button mx-auto hidden"
-          value="Import"
-          id="local-list"
           onkeydown="document.body.onkeydown"
         />
         <input
@@ -219,7 +216,7 @@
         <a
           id="changeable-head"
           href="."
-          class="block dark-button mx-auto top-4"
+          class="block dark-button mx-auto top-4 whitespace-nowrap"
           type="button"
           >Export Progress</a
         >
@@ -229,15 +226,18 @@
         class="
           item-wordrelated
           w-1/3
-          flex flex-col
+          flex flex-col flex-nowrap
           justify-between
           items-center
+          space-y-3
+          >
+          *
           font-bold
           text-blue-500
         "
       >
-        <span>
-          Audio &#x1f508;
+        <span class="inline-block whitespace-nowrap">
+          <span class="hidden md:inline">Audio </span>&#x1f508;&nbsp;
           <input
             type="button"
             class="inline-block dark-button"
@@ -246,22 +246,26 @@
             onkeydown="document.body.onkeydown"
           />
         </span>
-        <span class="block">
-          Speed &#x26a1;
+        <span class="inline-block whitespace-nowrap">
+          <span class="hidden md:inline">Speed </span>&#x26a1;&nbsp;
           <input
             type="range"
             id="read-speed"
-            class="align-middle w-24"
+            class="dark-button align-middle w-24"
             max="600"
             min="0"
             value="150"
           />
         </span>
-        <div>
-          <label for="nonsense-voting">Wordset &#x1f4da;</label>
+        <div class="whitespace-nowrap">
+          <label for="nonsense-voting" class="inline-block"
+            ><span class="hidden md:inline">Wordset </span
+            >&#x1f4da;&nbsp;</label
+          >
           <select
             id="nonsense-voting"
             class="
+              inline-block
               px-2
               py-1
               border-2
@@ -269,7 +273,7 @@
               border-dotted border-blue-400
               bg-blue-100
               font-mono
-              text-blue-500
+              text-sm text-blue-500 text-center
             "
           >
             <option value="dictList">CET-4</option>
@@ -284,24 +288,37 @@
 
     <div
       id="demo-container"
-      class="demo-container relative mt-10 w-full pt-3 font-sans text-xl"
+      class="demo-container relative top-0 mt-10 w-full pt-3 font-sans text-xl"
     >
       <div
         id="text-container"
         class="
           demo-area
           absolute
-          w-1/2
+          w-3/5
+          max-w-screen-lg
+          right-1/3
           pl-10
           pr-3
-          overflow-y-scroll overflow-x-hidden
+          pt-8
+          overflow-y-auto overflow-x-hidden
         "
       >
-        <div id="demo" class="demo-area w-full"></div>
+        <!-- &#13;&#10; or &#xa; both ok for new line in data attributes -->
+        <!-- data-placeholder="&#x1f6a6;USE GUIDE:&#13;&#10;1. Paste text in your target language up above.&#13;&#10;2. Select desired wordset.&#xa;3. Click `Use New Text`, matched words in wordset &#xa;will be showed on the right side.&#13;&#10;4. Click `Start | Resume` to start cloze test with matched words. &#xa;Use `Pause & Reveal` to peek the answers of words still covered.&#13;&#10;5. `Replay` to start it over." -->
+        <div id="demo" class="demo-area w-auto"></div>
       </div>
       <div
         id="explain-container"
-        class="demo-area absolute left-2/3 pr-10 overflow-y-auto"
+        class="
+          demo-area
+          absolute
+          left-2/3
+          pr-10
+          pt-8
+          overflow-y-auto
+          text-blue-500
+        "
       >
         <div
           id="explain-head"

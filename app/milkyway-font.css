@@ -2,6 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  /* outline: 1px solid red; */
 }
 
 /* ===================================================================== */
@@ -12,9 +13,10 @@
 
 #maininput {
   /* width: 100%; */
-  height: 300px;
-  border-width: 50px 0;
   /* border-style: solid; */
+
+  height: 300px;
+  border-width: 60px 0 40px 0;
 }
 
 #maininput::placeholder {
@@ -27,10 +29,30 @@
 
 #demo-container {
   /* width: 100%; */
-  height: 86vh;
   /* border-top: solid;
     border-right: solid; */
   /* position: relative; */
+
+  height: 86vh;
+}
+
+#demo-container > *:empty::before {
+  color: gray;
+}
+div[data-placeholder]:not([data-placeholder=""]):empty::before {
+  content: attr(data-placeholder);
+  white-space: pre;
+  z-index: 10;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-style: italic;
+  text-align: center;
+  vertical-align: middle;
+  background-color: rgb(191, 219, 254);
+  color: rgb(96, 165, 250);
+}
+#demo-container > *:empty::before {
+  content: "fallback placeholder";
 }
 
 #explain-head {
@@ -40,12 +62,18 @@
   /* font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace; */
 }
+
 #explain-area {
   /* border: solid 10px; */
 }
 
+#explain-area:empty {
+  /* hide the anonying colored padding box when there is no content in the div */
+  visibility: hidden;
+}
+
 #buttons > *[type="button"] {
-  margin: 0 5px 30px 0;
+  /* margin: 0 5px 30px 0; */
   top: 2rem;
 }
 
@@ -59,12 +87,11 @@
 .colorful-button {
   padding: 0.4em;
   border-radius: 0.2em;
-  /* float:left; */
 }
+
 .dark-button {
   /* padding: .4em;
     border-radius: .2em; */
-  /* float:left; */
 
   /* bg-transparent px-2 py-1 border-2 rounded-full border-blue-200 align-baseline font-mono text-blue-400 */
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
@@ -81,14 +108,16 @@
   /*     font-size:125%; */
   margin-left: 0.05in;
   margin-right: 0.05in;
-  /* font-family:monospace; */
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  /* .font-sans */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   position: relative;
   white-space: nowrap;
 }
 
 .word-filler-current {
+  font-weight: bold;
   /* font-size:145%; */
   /* font-family:monospace; */
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
@@ -204,8 +233,9 @@
 select {
   appearance: none;
   background-color: transparent;
-  width: 53%;
+  /* width: 53%; */
+  width: auto;
   cursor: inherit;
-  line-height: inherit;
+  /* line-height: inherit; */
   outline: none;
 }
