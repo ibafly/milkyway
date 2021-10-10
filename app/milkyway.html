@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<title id="title">Milkyway - Awesome AI-Aided Language Skill Enhancement</title>
@@ -8,15 +7,15 @@
 		<link id="overall-style" rel="stylesheet" href="app/milkyway-light.css" type="text/css" />
 		<!-- use tailwindCSS -->
 		<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-	<script src="app/dictEst.js"></script>
-	<!-- <script src="app/dict7k.js"></script>
-	<script src="app/dict9k.js"></script> -->
+		<script src="app/dictEst.js"></script>
+		<script src="app/dict7k.js"></script>
 		<script src="app/badList.js"></script>
+		<script src="app/dictEE.js"></script>
+		<script src="app/dict9k.js"></script>
 		<script src="app/rules.js"></script>
 		<script src="app/redundantList.js"></script>
 		<script src="app/init.js"> </script>
 	</head>
-
 	<body class="body relative">
 
 		<header class="absolute w-screen pt-3 px-5">
@@ -65,12 +64,12 @@
 				<div>
 					<label for="nonsense-voting">Wordset &#x1f4da;</label>
 					<select id="nonsense-voting" class="px-2 py-1 border-2 rounded-full border-dotted border-blue-400 bg-blue-100 font-mono text-blue-500">
+						<option value="dictEst">est</option>
 						<option value="dictList">CET-4</option>
 						<option value="dict9k" selected="selected">CET-6</option>
 						<option value="dictList_mw">TOFEL</option>
 						<option value="dictList_mw">IELTS</option>
 						<option value="dictList_mw">Barrister</option>
-						<option value="dictEst">est</option>
 					</select>
 				</div>
 			</div>
