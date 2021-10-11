@@ -222,15 +222,15 @@ function allWords(s) {
 }
 
 function useRule(s, r, st = [], last = new Object()) {
-  if ((!s || s.length == 0) && r[0] == "-") return null
+  if ((!s || s.length == 0) && st.length == 0) return null
   else if (r.length == 0) return s
   else {
     var r0 = r[0] // first character of that rule or sliced rule
+    // change ss sHead under condition r0==- bc s.length can be zero.
+    var ss = s[s.length - 1] // last letter of word or sliced word, eg: if 'likely' drops 'y' in first iterate, then now ss=l
+    var sHead = s.slice(0, s.length - 1) // letter array of word or sliced word, not including the last letter, in the example above, ss=likel
     if (r0 == ";") return s
     if (r0 == "-") {
-      // change ss sHead under condition r0==- bc s.length can be zero.
-      var ss = s[s.length - 1] // last letter of word or sliced word, eg: if 'likely' drops 'y' in first iterate, then now ss=l
-      var sHead = s.slice(0, s.length - 1) // letter array of word or sliced word, not including the last letter, in the example above, ss=likel
       st.push(ss)
       last.worker = (f) => (f(ss) ? sHead : null)
       last.reader = (a) => (x) => x == a
@@ -255,7 +255,8 @@ function useRule(s, r, st = [], last = new Object()) {
       }
     } else {
       s = last.worker(last.reader(r0))
-      return useRule(s, r.slice(1), st, last)
+      if (s) return useRule(s, r.slice(1), st, last)
+      else return null
     }
   }
 
@@ -287,12 +288,12 @@ function word2rules(word, rules, slicedTail = [], wordsNew = []) {
   var firstRuleKey = Object.keys(matchedRules)[0]
   var firstRuleValue = matchedRules[firstRuleKey]
 
-  if (firstRuleKey == "or" && firstRuleValue) {
+  if (firstRuleKey === "or" && firstRuleValue) {
     for (var r of firstRuleValue) {
       var w = useRule(word, r, slicedTail)
       if (w) wordsNew.push(w)
     }
-    delete matchedRules[firstRuleKey]
+    // delete matchedRules[firstRuleKey]
   }
 
   for (var letterToMatch in matchedRules) {
@@ -495,7 +496,7 @@ function elemExplain(
   if (cover) var explainHead = tailCover(voc, head, tail)
   else {
     var explainHead = voc + " &#8594 " + inText
-    info.audio.currentTime = 0
+    // info.audio.currentTime = 0
     word2board(voc)
   }
   document.getElementById("explain-head").innerHTML = explainHead
@@ -698,7 +699,7 @@ function charAdder(c) {
 }
 function transKeys(e) {
   function k2char(k) {
-    return "abcdefghijklmnopqrstuvwxyz"[k - 65]
+    return "abcdefghijklmnopqrstuvwxyzžõüšäöč"[k - 65]
   }
   if (65 <= e.keyCode && e.keyCode <= 90) charAdder(k2char(e.keyCode))
   else if (e.keyCode == 188) {
@@ -757,7 +758,6 @@ function listWords(excludeLess = true) {
 
   document.getElementById("show-answer").value =
     "Pause & Reveal: " + words1.length + "/" + words.length
-  "Pause: " + words1.length + "/" + words.length
   res = ""
   for (w of words) {
     var r = document.createElement("p")
@@ -850,7 +850,7 @@ function refillObjs() {
 document.getElementById("refill-clicker").onclick = refillObjs
 
 function getDef(d, cover = false) {
-  //  var res = "";
+  var res = ""
 
   //  if (!cover && d.ipa) {
   //    res = res + d.ipa + " -- \n";
@@ -861,7 +861,8 @@ function getDef(d, cover = false) {
   //    res = res + d;
   //  }
 
-  res = "<span class='font-bold'>" + d[0].translations + "</span><br>"
+  res =
+    "<span class='font-bold'>" + d[0].translations.join(", ") + "</span><br>"
 
   //  for (entry of d.slice(1)) {
   //    res = res + "<br><span class='font-semibold'>" + entry.phrase + ": </span>" + entry.translations;
