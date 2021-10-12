@@ -227,12 +227,18 @@ function useRule(s, r, st = [], last = new Object()) {
   else {
     var r0 = r[0] // first character of that rule or sliced rule
     // change ss sHead under condition r0==- bc s.length can be zero.
-    var ss = s[s.length - 1] // last letter of word or sliced word, eg: if 'likely' drops 'y' in first iterate, then now ss=l
-    var sHead = s.slice(0, s.length - 1) // letter array of word or sliced word, not including the last letter, in the example above, ss=likel
     if (r0 == ";") return s
     if (r0 == "-") {
+      var ss = s[s.length - 1] // last letter of word or sliced word, eg: if 'likely' drops 'y' in first iterate, then now ss=l
+      var sHead = s.slice(0, s.length - 1) // letter array of word or sliced word, not including the last letter, in the example above, ss=likel
       st.push(ss)
-      last.worker = (f) => (f(ss) ? sHead : null)
+      // last.worker = (f) => {
+      //   if (f(ss)) {
+      //     // console.log(sHead)
+      //     return sHead == "" ? true : sHead
+      //   } else return null
+      // }
+      last.worker = (f) => (f(ss) ? (sHead == "" ? true : sHead) : null)
       last.reader = (a) => (x) => x == a
       return useRule(sHead, r.slice(1), st, last)
     } else if (r0 == "+") {
@@ -255,7 +261,9 @@ function useRule(s, r, st = [], last = new Object()) {
       }
     } else {
       s = last.worker(last.reader(r0))
-      if (s) return useRule(s, r.slice(1), st, last)
+      if (s == true) {
+        return useRule("", r.slice(1), st, last)
+      } else if (s) return useRule(s, r.slice(1), st, last)
       else return null
     }
   }
@@ -289,8 +297,9 @@ function word2rules(word, rules, slicedTail = [], wordsNew = []) {
   var firstRuleValue = matchedRules[firstRuleKey]
 
   if (firstRuleKey === "or" && firstRuleValue) {
+    // console.log("in ORRRRR")
     for (var r of firstRuleValue) {
-      var w = useRule(word, r, slicedTail)
+      var w = useRule(word, r, [...slicedTail])
       if (w) wordsNew.push(w)
     }
     // delete matchedRules[firstRuleKey]
@@ -304,11 +313,11 @@ function word2rules(word, rules, slicedTail = [], wordsNew = []) {
     if (letterToMatch == ss && nearHasLetter == true) {
       // match current last letter and the next part of rule is still letter
 
-      console.log("GOTCHA and near has letter")
+      // console.log("GOTCHA and near has letter")
       slicedTail.push(ss)
       return word2rules(sHead, nearObj, slicedTail, wordsNew)
     } else if (letterToMatch != ss || Object.keys(nearObj).length === 0) {
-      console.log("NOT match, continue loop directly")
+      // console.log("NOT match, continue loop directly")
       continue
     } else {
       // else nearHasLetter == false, next(last) part of rule is an array of strings
@@ -318,8 +327,8 @@ function word2rules(word, rules, slicedTail = [], wordsNew = []) {
       slicedTail.push(ss)
       for (var r of nearObj) {
         // delete 'self' in the beginning of the array, find out (heads of) all possible original cases of one head
-        console.log("head:" + sHead + " rules:" + r + " stack:" + slicedTail)
-        var w = useRule(sHead, r, slicedTail)
+        // console.log("head:" + sHead + " rules:" + r + " stack:" + slicedTail)
+        var w = useRule(sHead, r, [...slicedTail])
         if (w) wordsNew.push(w)
       }
     }
@@ -341,7 +350,7 @@ function ruleAllWords(words, rules, filterWord, label = "word-filler") {
     var wl = w[1] // length of that word
     var ww = w[2] // word itself
     var wNew = word2rules(ww.toLowerCase(), rules) // an array including all possible original cases, only one is right
-    console.log(wNew)
+    // console.log(wNew)
     //var wNew=wordsIter([ww.toLowerCase()], rules)
     var iValid = wNew.findIndex(filterWord.good) // find the index of that one right original case, findIndex method returns the index of the first element in the array that satisfies the provided testing function
     var iBad = wNew.findIndex(filterWord.bad)
@@ -403,7 +412,7 @@ function sendText(do_jump = true, removeDup = remove_dup) {
   }
   var words = allWords(s)
   var wordsValid = ruleAllWords(words, ruleArray, getSimpleFilter())
-  console.log(wordsValid)
+  // console.log(wordsValid)
   allFiller = fillAllLabeled(s, wordsValid)
   demo.innerHTML = ""
   demo.innerHTML = allFiller.enlonged
