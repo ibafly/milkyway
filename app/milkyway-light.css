@@ -22,6 +22,8 @@ div {
 
   background: #fefefe;
   border-color: white;
+  scrollbar-color: rgb(191, 219, 254) transparent;
+  scrollbar-width: 5px;
 }
 
 #explain-head {
