@@ -439,6 +439,7 @@ function sendText(do_jump = true, removeDup = remove_dup) {
       elemExplain(this, false)
     }
   }
+  excludeRedundant()
   listWords(false)
 }
 
@@ -506,6 +507,7 @@ function elemExplain(
   else {
     var explainHead = voc + " &#8594 " + inText
     info.audio.currentTime = 0
+    info.audio.play()
     word2board(voc)
   }
   document.getElementById("explain-head").innerHTML = explainHead
@@ -618,6 +620,7 @@ document.getElementById("excise-clicker").onclick = startFill
 /* read out functions */
 var readState = []
 function startRead(i = currentFill) {
+  console.log(currentFill)
   var rate = document.getElementById("read-speed").value / 100.0
   // state_in_excise=true;
   if (readState.length == 0) {
@@ -637,11 +640,15 @@ function startRead(i = currentFill) {
   }
   var blankLast = fillObjs[i]
   var info = elemInfo(blankLast)
+  console.log(blankLast)
+  console.log(info)
   //    fillObjs.forEach(e => e.className="word-filler")
 
   elemBring(blankLast, bringPreserve, false)
   elemExplain(blankLast, false)
-  readState.pop()
+  console.log(readState)
+  readState.unshift()
+  // readState.pop()
   readState.push(
     setTimeout(() => startRead(i + 1), info.audio.duration * (1 + rate) * 1000)
   )
