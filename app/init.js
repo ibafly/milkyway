@@ -2,7 +2,7 @@
    event.preventDefault();
    * }; */
 var cookable = window.location.search
-var cookedRecords = document.cookie.split(";");
+var cookedRecords = document.cookie.split(";")
 window.cookin = (s) => {}
 window.cookout = (f) => {}
 
@@ -11,7 +11,7 @@ window.onload = () => {
     (b) => (b.onkeydown = () => b.blur())
   )
   document.getElementById("overall-restyle").onclick = changeTheme
-};
+}
 
 var baseServer = window.location.origin + window.location.pathname
 var audiourl = "audio/"
