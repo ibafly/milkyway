@@ -388,7 +388,7 @@ function getSimpleFilter() {
 function elemInfo(elem, allFiller1 = allFiller) {
   var eid = elem.id
   var info = allFiller1.wordDict[eid]
-  // info.audio = getAudio(info.voc);
+  info.audio = getAudio(info.voc)
   return info
 }
 function sendText(do_jump = true, removeDup = remove_dup) {
@@ -505,7 +505,7 @@ function elemExplain(
   if (cover) var explainHead = tailCover(voc, head, tail)
   else {
     var explainHead = voc + " &#8594 " + inText
-    // info.audio.currentTime = 0
+    info.audio.currentTime = 0
     word2board(voc)
   }
   document.getElementById("explain-head").innerHTML = explainHead
