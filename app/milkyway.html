@@ -131,7 +131,8 @@
           flex flex-col
           justify-around
           items-center
-          pt-3
+          pt-12
+          -mb-2
           border-2
           rounded-full
           border-yellow-200
@@ -160,16 +161,37 @@
           id="refill-clicker"
           onkeydown="document.body.onkeydown"
         />
-
-        <div class="mt-1">
+        <input
+          type="button"
+          class="colorful-button mt-1 px-3 bg-yellow-200 text-yellow-500"
+          value="List Words"
+          id="show-answer"
+          onkeydown="document.body.onkeydown"
+        />
+        <span
+          class="block colorful-button whitespace-nowrap text-center"
+        >
           <input
             type="button"
-            class="colorful-button bg-yellow-200 text-yellow-500"
-            value="List Words"
-            id="show-answer"
+            class="colorful-button bg-transparent"
+            value="&#x1f508; Dictation"
+            id="start-reader"
             onkeydown="document.body.onkeydown"
           />
-        </div>
+          <span
+            class="colorful-button ml-0 pr-2 whitespace-nowrap"
+          >
+            &#x26a1;
+            <input
+              type="range"
+              id="read-speed"
+              class="align-middle w-24"
+              max="600"
+              min="0"
+              value="150"
+            />
+          </span>
+        </span>
       </div>
 
       <div
@@ -235,7 +257,7 @@
         "
       >
         <span class="inline-block whitespace-nowrap">
-          <span class="hidden md:inline">Audio </span>&#x1f508;&nbsp;
+          <!-- <span class="hidden md:inline">Audio </span>&#x1f508;&nbsp;
           <input
             type="button"
             class="inline-block dark-button"
@@ -254,7 +276,7 @@
             min="0"
             value="150"
           />
-        </span>
+        </span> -->
         <div class="whitespace-nowrap">
           <label for="nonsense-voting" class="inline-block"
             ><span class="hidden md:inline">Wordset </span
