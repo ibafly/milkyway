@@ -14,6 +14,14 @@ var remove_dup = true
 var url1 = window.location.origin + window.location.pathname
 var urlData = "data://application/json;charset=utf-8,"
 
+var stores = {
+  all: [],
+  A2: undefined,
+  B1: undefined,
+  B2: undefined,
+  C1: undefined,
+}
+
 function getDataString(a, l, u = urlData) {
   var eea = encodeURIComponent(encodeURIComponent(getDate() + "\n" + a))
   var eel = encodeURIComponent(encodeURIComponent(JSON.stringify(l)))
@@ -181,6 +189,7 @@ function fillAll(s, words) {
 function fillAllLabeled(s, words) {
   var res = new Object()
   var wordList = []
+  // console.log(words)
   var sorted = words.sort((a, b) => a[0] >= b[0])
   var nLast = 0
   var s1 = ""
@@ -391,6 +400,32 @@ function elemInfo(elem, allFiller1 = allFiller) {
   info.audio = getAudio(info.voc)
   return info
 }
+
+function levelInUse() {
+  var level = document.getElementById("level-chooser").value
+  return level
+}
+
+function getChosenLevelWords(words) {
+  // console.log(words)
+  stores.all = words
+  var dictList = dictInUse()
+  var l = levelInUse()
+
+  if (stores[l] === undefined) {
+    for (w of words) {
+      var wordString = w[2]
+      console.log(dictList[wordString][0].level + l)
+      if (dictList[wordString][0].level === l) {
+        stores[l] = new Array()
+        stores[l].push(w)
+      }
+    }
+  }
+
+  return stores[l]
+}
+
 function sendText(do_jump = true, removeDup = remove_dup) {
   var s = document.getElementById("maininput").value
   //   find word-break on end of line which is seperated by '-', replace it with a normal word.
@@ -413,7 +448,12 @@ function sendText(do_jump = true, removeDup = remove_dup) {
   var words = allWords(s)
   var wordsValid = ruleAllWords(words, ruleArray, getSimpleFilter())
   // console.log(wordsValid)
-  allFiller = fillAllLabeled(s, wordsValid)
+
+  // get words in different levels
+  var wordsFitLevel = getChosenLevelWords(wordsValid)
+
+  // allFiller = fillAllLabeled(s, wordsValid)
+  allFiller = fillAllLabeled(s, wordsFitLevel)
   demo.innerHTML = ""
   demo.innerHTML = allFiller.enlonged
   fillObjs = []
@@ -878,7 +918,13 @@ function getDef(d, cover = false) {
   //  }
 
   res =
-    "<span class='font-bold'>" + d[0].translations.join(", ") + "</span><br>"
+    "<span class='text-sm font-bold'>" +
+    d[0].level +
+    "</span>" +
+    " " +
+    "<span class='font-bold'>" +
+    d[0].translations.join(", ") +
+    "</span><br>"
 
   //  for (entry of d.slice(1)) {
   //    res = res + "<br><span class='font-semibold'>" + entry.phrase + ": </span>" + entry.translations;

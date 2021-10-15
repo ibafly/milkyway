@@ -168,9 +168,7 @@
           id="show-answer"
           onkeydown="document.body.onkeydown"
         />
-        <span
-          class="block colorful-button whitespace-nowrap text-center"
-        >
+        <span class="block colorful-button whitespace-nowrap text-center">
           <input
             type="button"
             class="colorful-button bg-transparent"
@@ -178,9 +176,7 @@
             id="start-reader"
             onkeydown="document.body.onkeydown"
           />
-          <span
-            class="colorful-button ml-0 pr-2 whitespace-nowrap"
-          >
+          <span class="colorful-button ml-0 pr-2 whitespace-nowrap">
             &#x26a1;
             <input
               type="range"
@@ -256,8 +252,8 @@
           text-blue-500
         "
       >
-        <span class="inline-block whitespace-nowrap">
-          <!-- <span class="hidden md:inline">Audio </span>&#x1f508;&nbsp;
+        <!-- <span class="inline-block whitespace-nowrap">
+          <span class="hidden md:inline">Audio </span>&#x1f508;&nbsp;
           <input
             type="button"
             class="inline-block dark-button"
@@ -297,10 +293,31 @@
             "
           >
             <option value="dictEst" selected="selected">Est-A2-C1</option>
-            <option value="dictEst">Est-A2</option>
-            <option value="dictEst">Est-B1</option>
-            <option value="dictEst">Est-B2</option>
-            <option value="dictEst">Est-C1</option>
+          </select>
+        </div>
+        <div class="whitespace-nowrap">
+          <label for="level-chooser" class="inline-block">
+            <span class="hidden md:inline">Level </span>&#x1fa9c;&nbsp;</label
+          >
+          <select
+            id="level-chooser"
+            class="
+              inline-block
+              px-2
+              py-1
+              border-2
+              rounded-full
+              border-dotted border-blue-400
+              bg-blue-100
+              font-mono
+              text-sm text-blue-500 text-center
+            "
+          >
+            <option value="all" selected="selected">A2 to C1</option>
+            <option value="A2">A2</option>
+            <option value="B1">B1</option>
+            <option value="B2">B2</option>
+            <option value="C1">C1</option>
           </select>
         </div>
       </div>
