@@ -52,7 +52,8 @@
           py-1.5
           leading-8
           align-baseline
-          text-yellow-400
+          text-yellow-500
+          hover:text-yellow-400
         "
       >
         Help
@@ -105,6 +106,8 @@
         align-baseline
         font-mono
         text-blue-400
+        hover:text-white hover:bg-blue-400
+        cursor-pointer
       "
       value="Clear Input"
       id="clear-clicker"
@@ -135,43 +138,84 @@
           -mb-2
           border-2
           rounded-full
-          border-yellow-200
+          border-yellow-100
           font-mono
           text-base text-yellow-500
         "
       >
         <input
           type="button"
-          class="colorful-button bg-white w-auto px-2 py-1 align-bottom"
+          class="
+            colorful-button
+            bg-white
+            w-auto
+            px-2
+            py-1
+            align-bottom
+            hover:text-yellow-400
+            cursor-pointer
+          "
           value="Use New Text"
           id="main-clicker"
           onkeydown="document.body.onkeydown"
         />
         <input
           type="button"
-          class="colorful-button bg-transparent w-auto px-2 py-1"
+          class="
+            colorful-button
+            bg-transparent
+            w-auto
+            px-2
+            py-1
+            cursor-pointer
+            hover:text-yellow-400
+          "
           value="Start | Resume"
           id="excise-clicker"
           onkeydown="document.body.onkeydown"
         />
         <input
           type="button"
-          class="colorful-button bg-transparent w-auto px-2 py-1"
+          class="
+            colorful-button
+            bg-transparent
+            w-auto
+            px-2
+            py-1
+            cursor-pointer
+            hover:text-yellow-400
+          "
           value="Replay"
           id="refill-clicker"
           onkeydown="document.body.onkeydown"
         />
         <input
           type="button"
-          class="colorful-button mt-1 px-3 bg-yellow-200 text-yellow-500"
+          class="
+            colorful-button
+            mt-1
+            px-3
+            bg-yellow-200
+            text-yellow-500
+            hover:bg-yellow-100
+            cursor-pointer
+          "
           value="List Words"
           id="show-answer"
           onkeydown="document.body.onkeydown"
         />
-        <span class="block colorful-button whitespace-nowrap text-center">
+        <span
+          id="reader"
+          class="flex flex-row items-center flex-nowrap justify-between mt-1"
+        >
           <input
             type="button"
-            class="colorful-button bg-transparent"
+            class="
+              colorful-button
+              bg-transparent
+              cursor-pointer
+              hover:text-yellow-400
+            "
             value="&#x1f508; Dictation"
             id="start-reader"
             onkeydown="document.body.onkeydown"
@@ -181,7 +225,7 @@
             <input
               type="range"
               id="read-speed"
-              class="align-middle w-24"
+              class="align-middle w-24 opacity-70 hover:opacity-100"
               max="600"
               min="0"
               value="150"
@@ -204,14 +248,27 @@
       >
         <input
           type="button"
-          class="dark-button mx-auto"
+          class="
+            dark-button
+            mx-auto
+            hover:text-white hover:bg-blue-400
+            cursor-pointer
+          "
           value="Exclude Words"
           id="local-list"
           onkeydown="document.body.onkeydown"
         />
         <input
           type="button"
-          class="inline-block mx-auto dark-button px-2 py-1"
+          class="
+            inline-block
+            mx-auto
+            dark-button
+            px-2
+            py-1
+            hover:text-white hover:bg-blue-400
+            cursor-pointer
+          "
           value="Import Progress"
           id="local-loader"
           onkeydown="document.body.onkeydown"
@@ -232,7 +289,15 @@
         <a
           id="changeable-head"
           href="."
-          class="block dark-button mx-auto top-4 whitespace-nowrap"
+          class="
+            block
+            dark-button
+            mx-auto
+            top-4
+            whitespace-nowrap
+            hover:text-white hover:bg-blue-400
+            cursor-pointer
+          "
           type="button"
           >Export Progress</a
         >
@@ -275,8 +340,8 @@
         </span> -->
         <div class="whitespace-nowrap">
           <label for="nonsense-voting" class="inline-block"
-            ><span class="hidden md:inline">Wordset </span
-            >&#x1f4da;&nbsp;</label
+            ><span class="hidden md:inline">Word Set</span
+            >&nbsp;&#x1f4da;&nbsp;</label
           >
           <select
             id="nonsense-voting"
@@ -290,6 +355,8 @@
               bg-blue-100
               font-mono
               text-sm text-blue-500 text-center
+              cursor-pointer
+              hover:bg-blue-50
             "
           >
             <option value="dictEst" selected="selected">Est-A2-C1</option>
@@ -297,7 +364,8 @@
         </div>
         <div class="whitespace-nowrap">
           <label for="level-chooser" class="inline-block">
-            <span class="hidden md:inline">Level </span>&#x1fa9c;&nbsp;</label
+            <span class="hidden md:inline">Level</span
+            >&nbsp;&#x1fa9c;&nbsp;</label
           >
           <select
             id="level-chooser"
@@ -311,6 +379,8 @@
               bg-blue-100
               font-mono
               text-sm text-blue-500 text-center
+              cursor-pointer
+              hover:bg-blue-50
             "
           >
             <option value="all" selected="selected">A2 to C1</option>
