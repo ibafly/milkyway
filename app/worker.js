@@ -444,6 +444,7 @@ function sendText(do_jump = true, removeDup = remove_dup) {
       encodeURIComponent(encodeURIComponent(JSON.stringify(redundantList))) +
       '__large.png")'
     refreshChangeable() // update local cache bc user click parse btn to parse a new article
+    state_in_excise = false
   }
   var words = allWords(s)
   var wordsValid = ruleAllWords(words, ruleArray, getSimpleFilter())
