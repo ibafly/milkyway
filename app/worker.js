@@ -331,7 +331,7 @@ function word2rules(word, rules, slicedTail = [], wordsNew = []) {
     } else {
       // else nearHasLetter == false, next(last) part of rule is an array of strings
 
-      // var wordsNew = [word + slicedTail.reverse().join("")]; Estonia declensions are too many, so the possibility the word itself is the original case is relatively small. move this to mark 'reserve'.
+      // var wordsNew = [word + slicedTail.reverse().join("")];
       //            var wordsNew = [];
       slicedTail.push(ss)
       for (var r of nearObj) {
@@ -358,7 +358,7 @@ function ruleAllWords(words, rules, filterWord, label = "word-filler") {
     var wp = w[0] // index
     var wl = w[1] // length of that word
     var ww = w[2] // word itself
-    var wNew = word2rules(ww.toLowerCase(), rules) // an array including all possible original cases, only one is right
+    var wNew = word2rules(ww.toLowerCase(), rules, [], [ww.toLowerCase()]) // an array including all possible original cases, only one is right
     // console.log(wNew)
     //var wNew=wordsIter([ww.toLowerCase()], rules)
     var iValid = wNew.findIndex(filterWord.good) // find the index of that one right original case, findIndex method returns the index of the first element in the array that satisfies the provided testing function
